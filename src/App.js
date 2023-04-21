@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ExpenseForm from './components/ExpenseForm';
 
-function App() {
+const categories = [
+  { id: 'rent-mortgage', displayName: 'Rent/Mortgage' },
+  { id: 'utilities-bills', displayName: 'Utilities/Bills' },
+  { id: 'transportation-travel', displayName: 'Transportation/Travel' },
+  { id: 'food-entertainment', displayName: 'Food & Entertainment' },
+];
+
+const App = () => {
+  const [expensesByCategory, setExpensesByCategory] = useState({});
+
+  const handleExpenseUpdate = (categoryId, expense) => {
+    setExpensesByCategory((prevExpenses) => ({
+      ...prevExpenses,
+      [categoryId]: expense,
+    }));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>TenderMender</h1>
+      {categories.map((category) => (
+        <div key={category.id}>
+          <h2>{category.displayName}</h2>
+          <ExpenseForm
+            onExpenseUpdate={(expense) => handleExpenseUpdate(category.id, expense)}
+          />
+        </div>
+      ))}
+      {/* Add other components here */}
     </div>
   );
-}
+};
 
 export default App;
