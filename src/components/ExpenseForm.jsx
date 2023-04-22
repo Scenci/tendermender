@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
 import './scss/ExpenseForm.scss';
 
-const ExpenseForm = ({ onExpenseUpdate }) => {
+const ExpenseForm = ({ onExpenseUpdate, categoryName }) => {
     const [amounts, setAmounts] = useState([0]);
 
     useEffect(() => {
@@ -19,7 +20,7 @@ const ExpenseForm = ({ onExpenseUpdate }) => {
 
   return (
     <div className="expense-form">
-      <div className="expense-form__header"></div>
+      <div className="expense-form__header">{categoryName}</div>
       {amounts.map((amount, index) => (
         <div key={index} className="expense-form__field">
           <label htmlFor={`amount-${index}`} className="expense-form__field__label">
@@ -37,7 +38,7 @@ const ExpenseForm = ({ onExpenseUpdate }) => {
         </div>
       ))}
       <button type="button" onClick={addNewAmountField} className="expense-form__add-button">
-        Add
+        +
       </button>
     </div>
   );

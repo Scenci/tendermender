@@ -1,7 +1,14 @@
 .app-container{
   background-color: #282a36;
+  color: white;
+}
+
+.app-container h1{
+  background-color: #282a36;
+  color: white;
 }
 
 .expense-form-container{
   background-color: #282a36;
+  color: white;
 }
